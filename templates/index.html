@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Estacionamento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Estacionamento - Controle de Veículos</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <h2>Registrar Nova Entrada</h2>
+    <form action="{{ url_for('registrar_entrada') }}" method="post">
+        <label for="placa">Placa:</label>
+        <input type="text" id="placa" name="placa" required>
+        <button type="submit">Registrar Entrada</button>
+    </form>
+
+    <h2>Veículos Estacionados</h2>
+    <table>
+        <tr>
+            <th>Placa</th>
+            <th>Entrada</th>
+            <th>Saída</th>
+            <th>Ações</th>
+        </tr>
+        {% for veiculo in veiculos %}
+        <tr>
+            <td>{{ veiculo[0] }}</td>
+            <td>{{ veiculo[1] }}</td>
+            <td>{{ veiculo[2] if veiculo[2] else 'Ainda no estacionamento' }}</td>
+            <td>
+                {% if not veiculo[2] %}
+                    <a href="{{ url_for('registrar_saida', placa=veiculo[0]) }}">Registrar Saída</a>
+                {% else %}
+                    Saída registrada
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
