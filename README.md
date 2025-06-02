@@ -20,4 +20,29 @@ pip install -r requirements.txt
 python app.py
 ```
 3. Abra a aplicação React Native para acessar a interface mobile.
+
+
+🔐 Acesso Administrativo (padrão)
+Usuário: admin
+
+Senha: admin123
+
+(Recomenda-se alterar após o primeiro login.)
+
+📊 Recursos Adicionais
+Backup automático do banco de dados
+
+Registro de logs do sistema
+
+Relatórios exportáveis em PDF
+
+Histórico completo de cada veículo
+
+👥 Contribuidores
+Ricardo Cavalcante - RC DEV
+
+
+📄 Licença
+Este projeto está licenciado sob a MIT License.
+
     
